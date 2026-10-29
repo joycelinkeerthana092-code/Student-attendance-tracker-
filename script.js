@@ -1,6 +1,7 @@
 const form = document.getElementById("studentForm");
 const list = document.getElementById("studentList");
 const message = document.getElementById("message");
+const resetBtn = document.getElementById("resetAllBtn");
 
 let students = JSON.parse(localStorage.getItem("attendanceStudents") || "[]");
 
@@ -30,10 +31,9 @@ function render() {
         return;
     }
     
-    let html = "<table><tr><th>Roll No.</th><th>Name</th><th>Present</th><th>Absent</th><th>Attendance</th><th>Action</th></tr>";
+    let html = "<table><tr><th>Roll No.</th><th>Name</th><th>Present</th><th>Absent</th><th>Attendance</th><th>Mark Status</th><th>Action</th></tr>";
     students.forEach((student, index) => {
         const pct = percentage(student);
-        // HTML inline click-la window.mark-nu direct-ah reference panrom
         html += `<tr>
             <td>${student.roll}</td>
             <td>${student.name}</td>
@@ -41,8 +41,11 @@ function render() {
             <td>${student.absent}</td>
             <td>${pct.toFixed(1)}%${pct < 75 ? " (Low)" : ""}</td>
             <td>
-                <button onclick="window.mark(${index}, 'present')">Present</button>
-                <button onclick="window.mark(${index}, 'absent')">Absent</button>
+                <button class="btn-present" onclick="window.mark(${index}, 'present')">Present</button>
+                <button class="btn-absent" onclick="window.mark(${index}, 'absent')">Absent</button>
+            </td>
+            <td>
+                <button class="btn-delete" onclick="window.deleteStudent(${index})">Delete</button>
             </td>
         </tr>`;
     });
@@ -70,11 +73,10 @@ form.addEventListener("submit", (event) => {
     message.style.color = "green";
     message.textContent = "Student added successfully.";
     
-    // 3 seconds-ku apram message-ah clear panna:
     setTimeout(() => { message.textContent = ""; }, 3000);
 });
 
-// MUKHIYAM: Function-ah global window state-ku explicitly exposed panrom
+// Mark Attendance Function
 window.mark = function(index, status) {
     if (status === "present") {
         students[index].present++;
@@ -85,5 +87,28 @@ window.mark = function(index, status) {
     render();
 }
 
-// Initial render call
+// Single Student-ah Delete seiyum function
+window.deleteStudent = function(index) {
+    if (confirm(`Are you sure you want to delete ${students[index].name}?`)) {
+        students.splice(index, 1);
+        save();
+        render();
+        message.style.color = "orange";
+        message.textContent = "Student removed.";
+        setTimeout(() => { message.textContent = ""; }, 3000);
+    }
+}
+
+// Ellaa data-vaiyum erase seiyum Reset function
+resetBtn.addEventListener("click", () => {
+    if (confirm("Muzhu attendance data-vaiyum reset seiya virumbugirீர்களா? Indha action-ah thiruppi pera mudiyaadhu!")) {
+        students = [];
+        save();
+        render();
+        message.style.color = "red";
+        message.textContent = "All student data cleared.";
+        setTimeout(() => { message.textContent = ""; }, 3000);
+    }
+});
+
 render();
