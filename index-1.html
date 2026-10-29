@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Attendance Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Student Attendance Tracker</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#students">Students</a>
+    </nav>
+  </header>
+
+  <main id="home" class="container">
+    <h2>Dashboard</h2>
+    <section class="stats">
+      <article>Total Students: <strong id="total">0</strong></article>
+      <article>Present Sessions: <strong id="present">0</strong></article>
+      <article>Absent Sessions: <strong id="absent">0</strong></article>
+      <article>Attendance Rate: <strong id="rate">0%</strong></article>
+    </section>
+
+    <section id="students">
+      <h2>Student List</h2>
+      <form id="studentForm">
+        <input id="studentName" placeholder="Student name" required>
+        <input id="rollNo" placeholder="Roll number" required>
+        <button type="submit">Add Student</button>
+      </form>
+      <p id="message" role="status"></p>
+      <div id="studentList"></div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
