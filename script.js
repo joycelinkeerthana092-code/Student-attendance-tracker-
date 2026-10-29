@@ -33,6 +33,7 @@ function render() {
     let html = "<table><tr><th>Roll No.</th><th>Name</th><th>Present</th><th>Absent</th><th>Attendance</th><th>Action</th></tr>";
     students.forEach((student, index) => {
         const pct = percentage(student);
+        // HTML inline click-la window.mark-nu direct-ah reference panrom
         html += `<tr>
             <td>${student.roll}</td>
             <td>${student.name}</td>
@@ -40,8 +41,8 @@ function render() {
             <td>${student.absent}</td>
             <td>${pct.toFixed(1)}%${pct < 75 ? " (Low)" : ""}</td>
             <td>
-                <button onclick="mark(${index}, 'present')">Present</button>
-                <button onclick="mark(${index}, 'absent')">Absent</button>
+                <button onclick="window.mark(${index}, 'present')">Present</button>
+                <button onclick="window.mark(${index}, 'absent')">Absent</button>
             </td>
         </tr>`;
     });
@@ -57,6 +58,7 @@ form.addEventListener("submit", (event) => {
     
     const duplicate = students.some(student => student.roll.toLowerCase() === roll.toLowerCase());
     if (duplicate) {
+        message.style.color = "red";
         message.textContent = "That roll number already exists.";
         return;
     }
@@ -65,10 +67,15 @@ form.addEventListener("submit", (event) => {
     save();
     render();
     form.reset();
-    message.textContent = "Student added.";
+    message.style.color = "green";
+    message.textContent = "Student added successfully.";
+    
+    // 3 seconds-ku apram message-ah clear panna:
+    setTimeout(() => { message.textContent = ""; }, 3000);
 });
 
-function mark(index, status) {
+// MUKHIYAM: Function-ah global window state-ku explicitly exposed panrom
+window.mark = function(index, status) {
     if (status === "present") {
         students[index].present++;
     } else {
@@ -78,4 +85,5 @@ function mark(index, status) {
     render();
 }
 
+// Initial render call
 render();
