@@ -10,60 +10,35 @@
   <header>
     <h1>Student Attendance Tracker</h1>
     <nav>
-      <!-- Navigation Links for 5 Elements -->
-      <a href="#" class="nav-link active" onclick="switchTab('dashboard-section')">5.1 Home/Dashboard</a>
-      <a href="#" class="nav-link" onclick="switchTab('list-section')">5.2 Student List</a>
-      <a href="#" class="nav-link" onclick="switchTab('mark-section')">5.3 Mark Attendance</a>
-      <a href="#" class="nav-link" onclick="switchTab('records-section')">5.4 Attendance Records</a>
-      <a href="#" class="nav-link" onclick="switchTab('report-section')">5.5 Attendance Report</a>
+      <a href="#home">Home</a>
+      <a href="#students">Students</a>
     </nav>
   </header>
 
-  <main class="container">
-    
-    <!-- 5.1 HOME / DASHBOARD SECTION -->
-    <section id="dashboard-section" class="tab-content active">
-      <h2>5.1 Home / Dashboard</h2>
-      <div class="stats">
-        <article>Total Students: <strong id="total">0</strong></article>
-        <article>Present Sessions: <strong id="present">0</strong></article>
-        <article>Absent Sessions: <strong id="absent">0</strong></article>
-        <article>Attendance Rate: <strong id="rate">0%</strong></article>
-      </div>
+  <main id="home" class="container">
+    <h2>Dashboard</h2>
+    <section class="stats">
+      <article>Total Students: <strong id="total">0</strong></article>
+      <article>Present Sessions: <strong id="present">0</strong></article>
+      <article>Absent Sessions: <strong id="absent">0</strong></article>
+      <article>Attendance Rate: <strong id="rate">0%</strong></article>
     </section>
 
-    <!-- 5.2 STUDENT LIST SECTION -->
-    <section id="list-section" class="tab-content">
-      <h2>5.2 Student List (Add Students)</h2>
+    <section id="students">
+      <h2>Student List</h2>
       <form id="studentForm">
         <input id="studentName" placeholder="Student name" required>
         <input id="rollNo" placeholder="Roll number" required>
         <button type="submit">Add Student</button>
       </form>
       <p id="message" role="status"></p>
+      
+      <!-- Reset button tags form-ku keezha correct-ana idathula iruku -->
       <button id="resetAllBtn" style="margin-bottom: 15px; background-color: #7f8c8d; color: white;">Reset All Data</button>
       
-      <div id="simpleStudentList"></div>
+      <!-- Student dynamic list grid container -->
+      <div id="studentList"></div>
     </section>
-
-    <!-- 5.3 MARK ATTENDANCE SECTION -->
-    <section id="mark-section" class="tab-content">
-      <h2>5.3 Mark Attendance</h2>
-      <div id="markAttendanceList"></div>
-    </section>
-
-    <!-- 5.4 ATTENDANCE RECORDS SECTION -->
-    <section id="records-section" class="tab-content">
-      <h2>5.4 Attendance Records</h2>
-      <div id="recordsList"></div>
-    </section>
-
-    <!-- 5.5 ATTENDANCE REPORT SECTION -->
-    <section id="report-section" class="tab-content">
-      <h2>5.5 Attendance Report (Analysis)</h2>
-      <div id="reportList"></div>
-    </section>
-
   </main>
   <script src="script.js"></script>
 </body>
