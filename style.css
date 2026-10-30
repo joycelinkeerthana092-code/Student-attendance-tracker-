@@ -1,18 +1,16 @@
-/* General Base Design Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 body {
-    background-color: #f4f7f6;
+    background-color: #f8f9fa;
     color: #333;
-    padding-bottom: 30px;
+    padding: 0;
 }
 
-/* Header UI Elements */
 header {
     background-color: #0f4c81;
     color: white;
@@ -20,146 +18,102 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 header h1 {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
 }
 
 nav a {
     color: white;
     text-decoration: none;
     margin-left: 15px;
-    font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
-nav a:hover {
-    text-decoration: underline;
-}
-
-/* Main Container Control */
 .container {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 0 15px;
+    max-width: 100%;
+    padding: 20px;
 }
 
 h2 {
-    margin: 15px 0 10px 0;
-    color: #2c3e50;
-    font-size: 1.25rem;
+    margin: 15px 0;
+    color: #333;
+    font-size: 1.1rem;
 }
 
-/* Dashboard Statistics Flex Blocks */
 .stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .stats article {
     background: white;
     padding: 15px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    font-size: 0.9rem;
-    color: #555;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    flex: 1;
+    min-width: 160px;
+    font-size: 0.85rem;
 }
 
 .stats article strong {
     display: block;
-    font-size: 1.5rem;
-    color: #0f4c81;
+    font-size: 1.3rem;
+    color: #333;
     margin-top: 5px;
 }
 
-/* Input Form Section */
 #studentForm {
     display: flex;
     gap: 10px;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
+    margin-bottom: 10px;
 }
 
 #studentForm input {
-    flex: 1;
-    min-width: 150px;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    width: 180px;
 }
 
-#studentForm input:focus {
-    border-color: #0f4c81;
-    outline: none;
-}
-
-/* Action Button Standards */
 button {
-    padding: 10px 16px;
+    padding: 8px 14px;
     border: none;
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: white;
-    transition: background-color 0.2s, transform 0.1s;
 }
 
-button:active {
-    transform: scale(0.98);
+#studentForm button {
+    background-color: #007bff;
 }
 
-#studentForm button[type="submit"] {
-    background-color: #2980b9;
-}
-
-#studentForm button[type="submit"]:hover {
-    background-color: #2471a3;
-}
-
-/* App Reset Controller */
 #resetAllBtn {
     background-color: #7f8c8d;
-    margin-bottom: 15px;
-    display: block;
-    width: auto;
 }
 
-#resetAllBtn:hover {
-    background-color: #6c7a7d;
-}
-
-/* System Alerts Notification Text */
-#message {
-    font-weight: 600;
-    margin-bottom: 10px;
-    font-size: 0.95rem;
-}
-
-/* Mobile Responsive Table Dynamic Configurations */
 #studentList {
     width: 100%;
     overflow-x: auto;
     background: white;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    -webkit-overflow-scrolling: touch;
+    border: 1px solid #eee;
+    border-radius: 4px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 th, td {
-    padding: 12px;
+    padding: 10px;
     border-bottom: 1px solid #eee;
     text-align: left;
     white-space: nowrap;
@@ -167,42 +121,30 @@ th, td {
 
 th {
     background-color: #f8f9fa;
-    color: #2c3e50;
-    font-weight: 600;
+    color: #555;
 }
 
-tr:hover {
-    background-color: #fafafa;
-}
-
-/* Dynamic Inner Row Action Buttons Coloring */
 .btn-present {
     background-color: #2ecc71;
-    padding: 6px 12px;
-    font-size: 0.8rem;
-    margin-right: 4px;
-}
-
-.btn-present:hover {
-    background-color: #27ae60;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    margin-right: 2px;
 }
 
 .btn-absent {
     background-color: #e74c3c;
-    padding: 6px 12px;
-    font-size: 0.8rem;
-}
-
-.btn-absent:hover {
-    background-color: #c0392b;
+    padding: 5px 10px;
+    font-size: 0.75rem;
 }
 
 .btn-delete {
     background-color: #e67e22;
-    padding: 6px 12px;
-    font-size: 0.8rem;
+    padding: 5px 10px;
+    font-size: 0.75rem;
 }
 
-.btn-delete:hover {
-    background-color: #d35400;
+#message {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
 }
