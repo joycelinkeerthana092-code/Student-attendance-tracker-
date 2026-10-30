@@ -31,82 +31,39 @@ function render() {
         return;
     }
     
-    // Create element tables directly without using template strings layout arrays
-    list.innerHTML = ""; 
-    const table = document.createElement("table");
-    
-    // Table Header Structure Creation
-    const headerRow = document.createElement("tr");
-    const headers = ["Roll No.", "Name", "5.4 Records (Present)", "5.4 Records (Absent)", "5.5 Attendance Report", "5.3 Mark Attendance", "Action"];
-    headers.forEach(text => {
-        const th = document.createElement("th");
-        th.textContent = text;
-        headerRow.appendChild(th);
-    });
-    table.appendChild(headerRow);
-    
-    // Dynamic Table Rows Implementation
+    // Numbers clear panna headers setup
+    let html = "<table>" +
+        "<tr>" +
+            "<th>Roll No.</th>" +
+            "<th>Name</th>" +
+            "<th>Record (Present)</th>" +
+            "<th>Record (Absent)</th>" +
+            "<th>Attendance Report</th>" +
+            "<th>Mark Attendance</th>" +
+            "<th>Action</th>" +
+        "</tr>";
+        
     students.forEach((student, index) => {
         const pct = percentage(student);
-        const tr = document.createElement("tr");
+        const lowText = pct < 75 ? " (Low)" : "";
+        const reportStyle = pct < 75 ? "color: #e74c3c; font-weight: bold;" : "color: #333; font-weight: normal;";
         
-        const tdRoll = document.createElement("td");
-        tdRoll.textContent = student.roll;
-        
-        const tdName = document.createElement("td");
-        tdName.textContent = student.name;
-        
-        const tdPresent = document.createElement("td");
-        tdPresent.textContent = student.present;
-        
-        const tdAbsent = document.createElement("td");
-        tdAbsent.textContent = student.absent;
-        
-        const tdReport = document.createElement("td");
-        tdReport.textContent = pct.toFixed(1) + "%" + (pct < 75 ? " (Low)" : "");
-        if (pct < 75) {
-            tdReport.style.color = "#e74c3c";
-            tdReport.style.fontWeight = "bold";
-        } else {
-            tdReport.style.color = "#333";
-        }
-        
-        // Mark Attendance Controller Buttons Setup
-        const tdMark = document.createElement("td");
-        const btnPres = document.createElement("button");
-        btnPres.className = "btn-present";
-        btnPres.textContent = "Present";
-        btnPres.onclick = function() { window.mark(index, "present"); };
-        
-        const btnAbs = document.createElement("button");
-        btnAbs.className = "btn-absent";
-        btnAbs.textContent = "Absent";
-        btnAbs.onclick = function() { window.mark(index, "absent"); };
-        
-        tdMark.appendChild(btnPres);
-        tdMark.appendChild(btnAbs);
-        
-        // Delete Single Row Action Setup
-        const tdDelete = document.createElement("td");
-        const btnDel = document.createElement("button");
-        btnDel.className = "btn-delete";
-        btnDel.textContent = "Delete";
-        btnDel.onclick = function() { window.deleteStudent(index); };
-        tdDelete.appendChild(btnDel);
-        
-        // Append all grid parameters to active rows
-        tr.appendChild(tdRoll);
-        tr.appendChild(tdName);
-        tr.appendChild(tdPresent);
-        tr.appendChild(tdAbsent);
-        tr.appendChild(tdReport);
-        tr.appendChild(tdMark);
-        tr.appendChild(tdDelete);
-        
-        table.appendChild(tr);
+        html += "<tr>" +
+            "<td>" + student.roll + "</td>" +
+            "<td>" + student.name + "</td>" +
+            "<td>" + student.present + "</td>" +
+            "<td>" + student.absent + "</td>" +
+            "<td style='" + reportStyle + "'>" + pct.toFixed(1) + "%" + lowText + "</td>" +
+            "<td>" +
+                "<button class='btn-present' onclick='window.mark(" + index + ", \"present\")'>Present</button>" +
+                "<button class='btn-absent' onclick='window.mark(" + index + ", \"absent\")'>Absent</button>" +
+            "</td>" +
+            "<td>" +
+                "<button class='btn-delete' onclick='window.deleteStudent(" + index + ")'>Delete</button>" +
+            "</td>" +
+        "</tr>";
     });
-    
-    list.appendChild(table);
+    list.innerHTML = html + "</table>";
 }
 
 form.addEventListener("submit", (event) => {
