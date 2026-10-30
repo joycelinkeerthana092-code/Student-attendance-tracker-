@@ -16,7 +16,7 @@
   </header>
 
   <main id="home" class="container">
-    <h2>Dashboard</h2>
+    <h2>5.1 Home / Dashboard</h2>
     <section class="stats">
       <article>Total Students: <strong id="total">0</strong></article>
       <article>Present Sessions: <strong id="present">0</strong></article>
@@ -25,18 +25,16 @@
     </section>
 
     <section id="students">
-      <h2>Student List</h2>
-      <form id="studentForm">
-        <input id="studentName" placeholder="Student name" required>
-        <input id="rollNo" placeholder="Roll number" required>
+      <h2>5.2 Student List</h2>
+      <form id="studentForm" onsubmit="return false;">
+        <input id="studentName" type="text" placeholder="Student name" required>
+        <input id="rollNo" type="text" placeholder="Roll number" required>
         <button type="submit">Add Student</button>
       </form>
       <p id="message" role="status"></p>
       
-      <!-- Reset button tags form-ku keezha correct-ana idathula iruku -->
       <button id="resetAllBtn" style="margin-bottom: 15px; background-color: #7f8c8d; color: white;">Reset All Data</button>
       
-      <!-- Student dynamic list grid container -->
       <div id="studentList"></div>
     </section>
   </main>
