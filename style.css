@@ -1,208 +1,40 @@
-/* General Base Design Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Tabs Handling Hidden Settings */
+.tab-content {
+    display: none; /* Default-ah matha tabs content hidden-la irukum */
+    animation: fadeIn 0.3s ease-in-out;
 }
 
-body {
-    background-color: #f4f7f6;
-    color: #333;
-    padding-bottom: 30px;
+.tab-content.active {
+    display: block; /* Active tab mattum veliya theriyum */
 }
 
-/* Header UI Elements */
-header {
-    background-color: #0f4c81;
-    color: white;
-    padding: 15px 20px;
+/* Nav links styling */
+header nav {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     flex-wrap: wrap;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-header h1 {
-    font-size: 1.4rem;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 15px;
-    font-weight: 600;
-    font-size: 0.95rem;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
-/* Main Container Control */
-.container {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 0 15px;
-}
-
-h2 {
-    margin: 15px 0 10px 0;
-    color: #2c3e50;
-    font-size: 1.25rem;
-}
-
-/* Dashboard Statistics Flex Blocks */
-.stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.stats article {
-    background: white;
-    padding: 15px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    font-size: 0.9rem;
-    color: #555;
-}
-
-.stats article strong {
-    display: block;
-    font-size: 1.5rem;
-    color: #0f4c81;
-    margin-top: 5px;
-}
-
-/* Input Form Section */
-#studentForm {
-    display: flex;
     gap: 10px;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
 }
 
-#studentForm input {
-    flex: 1;
-    min-width: 150px;
-    padding: 10px;
-    border: 1px solid #ccc;
+.nav-link {
+    padding: 6px 12px;
     border-radius: 4px;
-    font-size: 0.95rem;
+    transition: background-color 0.2s;
 }
 
-#studentForm input:focus {
-    border-color: #0f4c81;
-    outline: none;
-}
-
-/* Action Button Standards */
-button {
-    padding: 10px 16px;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 0.9rem;
-    color: white;
-    transition: background-color 0.2s, transform 0.1s;
-}
-
-button:active {
-    transform: scale(0.98);
-}
-
-#studentForm button[type="submit"] {
+.nav-link.active {
     background-color: #2980b9;
+    text-decoration: none !important;
 }
 
-#studentForm button[type="submit"]:hover {
-    background-color: #2471a3;
+/* 5.2 Simple bullet lists styling */
+#simpleStudentList ul {
+    list-style-type: square;
+    padding-left: 20px;
+    font-size: 1.05rem;
+    line-height: 2;
 }
 
-/* App Reset Controller */
-#resetAllBtn {
-    background-color: #7f8c8d;
-    margin-bottom: 15px;
-    display: block;
-    width: auto;
-}
-
-#resetAllBtn:hover {
-    background-color: #6c7a7d;
-}
-
-/* System Alerts Notification Text */
-#message {
-    font-weight: 600;
-    margin-bottom: 10px;
-    font-size: 0.95rem;
-}
-
-/* Mobile Responsive Table Dynamic Configurations */
-#studentList {
-    width: 100%;
-    overflow-x: auto;
-    background: white;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    -webkit-overflow-scrolling: touch;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-}
-
-th, td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-    text-align: left;
-    white-space: nowrap;
-}
-
-th {
-    background-color: #f8f9fa;
-    color: #2c3e50;
-    font-weight: 600;
-}
-
-tr:hover {
-    background-color: #fafafa;
-}
-
-/* Dynamic Inner Row Action Buttons Coloring */
-.btn-present {
-    background-color: #2ecc71;
-    padding: 6px 12px;
-    font-size: 0.8rem;
-    margin-right: 4px;
-}
-
-.btn-present:hover {
-    background-color: #27ae60;
-}
-
-.btn-absent {
-    background-color: #e74c3c;
-    padding: 6px 12px;
-    font-size: 0.8rem;
-}
-
-.btn-absent:hover {
-    background-color: #c0392b;
-}
-
-.btn-delete {
-    background-color: #e67e22;
-    padding: 6px 12px;
-    font-size: 0.8rem;
-}
-
-.btn-delete:hover {
-    background-color: #d35400;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
